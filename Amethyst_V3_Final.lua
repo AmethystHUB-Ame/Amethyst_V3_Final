@@ -37,6 +37,11 @@ if _G.__AmethystUltimateV3 then
 end
 _G.__AmethystUltimateV3 = true
 
+local function _safeCall(fn, ...)
+    return xpcall(fn, function(err)
+        warn("[Amethyst Error]: " .. tostring(err) .. "\n" .. debug.traceback())
+    end, ...)
+end
 
 -- ============================================================
 -- SERVICES
