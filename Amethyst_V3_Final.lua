@@ -46,11 +46,6 @@ _G.__AmethystUltimateV3 = true
 --     <full stack trace>
 -- This replaces basic pcall() with xpcall() + debug.traceback().
 -- ============================================================
-local function _safeCall(fn, ...)
-    return xpcall(fn, function(err)
-        warn("[Amethyst Error]: " .. tostring(err) .. "\n" .. debug.traceback())
-    end, ...)
-end
 
 -- ============================================================
 -- SERVICES
