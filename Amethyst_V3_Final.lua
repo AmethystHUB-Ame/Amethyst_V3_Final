@@ -37,33 +37,6 @@ if _G.__AmethystUltimateV3 then
 end
 _G.__AmethystUltimateV3 = true
 
--- ============================================================
--- ROBUST ERROR HANDLER (xpcall + debug.traceback)
--- ============================================================
--- All runtime operations are routed through _safeCall for unified
--- error logging. Errors are printed to console in the format:
---     [Amethyst Error]: <message>
---     <full stack trace>
--- This replaces basic pcall() with xpcall() + debug.traceback().
--- ============================================================
-local function _safeCall(fn, ...)
-    -- Kita simpan argumen dalam jadual supaya lebih stabil
-    local args = {...}
-    
-    -- pcall (protected call) adalah cara paling selamat untuk jalankan kod
-    local success, result = pcall(function()
-        return fn(unpack(args))
-    end)
-
-    -- Jika gagal, kita beri amaran dalam console tanpa mematikan skrip
-    if not success then
-        warn("[Amethyst Error]: " .. tostring(result))
-        return nil
-    end
-
-    -- Jika berjaya, ia akan pulangkan hasil fungsi tersebut
-    return result
-end
 
 -- ============================================================
 -- SERVICES
